@@ -40,11 +40,33 @@ public class Ticket {
         this.toPlanetId = toPlanetId;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Planet getFromPlanetId() {
+        return fromPlanetId;
+    }
+
+    public void setFromPlanetId(Planet fromPlanetId) {
+        this.fromPlanetId = fromPlanetId;
+    }
+
+    public Planet getToPlanetId() {
+        return toPlanetId;
+    }
+
+    public void setToPlanetId(Planet toPlanetId) {
+        this.toPlanetId = toPlanetId;
+    }
+
     @Override
     public String toString() {
-        return "Ticket{" +
-                "id=" + id +
-                ", createdAt=" + createdAt +
+        return "Ticket{createdAt=" + createdAt +
                 ", client=" + client +
                 ", fromPlanetId=" + fromPlanetId +
                 ", toPlanetId=" + toPlanetId +

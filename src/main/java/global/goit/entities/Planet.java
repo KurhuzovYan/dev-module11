@@ -27,9 +27,6 @@ public class Planet {
 
     @Override
     public String toString() {
-        return "Planet{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return "Planet{name='" + name + '\'' + '}';
     }
 }
