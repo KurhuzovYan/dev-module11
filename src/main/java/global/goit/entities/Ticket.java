@@ -19,15 +19,15 @@ public class Ticket {
     @Column(name = "create_at", columnDefinition = "TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private Timestamp createdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "client_id", nullable = false)
     private Client client;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "from_planet_id", referencedColumnName = "planet_id", nullable = false)
     private Planet fromPlanetId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "to_planet_id", referencedColumnName = "planet_id", nullable = false)
     private Planet toPlanetId;
 

@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import static org.hibernate.cfg.AvailableSettings.*;
+
 public class MigrationUtils {
 
     private static Properties properties;
@@ -22,9 +24,9 @@ public class MigrationUtils {
     }
 
     public static void checkMigration() {
-        String url = properties.getProperty("hibernate.connection.url");
-        String name = properties.getProperty("hibernate.connection.username");
-        String password = properties.getProperty("hibernate.connection.password");
+        String url = properties.getProperty(URL);
+        String name = properties.getProperty(USER);
+        String password = properties.getProperty(PASS);
 
         Flyway flyway = Flyway
                 .configure()

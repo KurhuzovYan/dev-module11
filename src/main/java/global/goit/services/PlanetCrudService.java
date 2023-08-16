@@ -13,7 +13,7 @@ public class PlanetCrudService {
     public void createPlanet(Planet planet) {
         try (Session session = HibernateUtils.getInstance().getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.persist(planet);
+            session.merge(planet);
             transaction.commit();
         } catch (SessionException e) {
             throw new RuntimeException();

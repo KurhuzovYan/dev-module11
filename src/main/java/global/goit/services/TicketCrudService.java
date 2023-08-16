@@ -4,8 +4,6 @@ import global.goit.entities.Client;
 import global.goit.entities.Planet;
 import global.goit.entities.Ticket;
 import global.goit.utils.HibernateUtils;
-import jakarta.transaction.Transactional;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
 import org.hibernate.Transaction;
@@ -17,7 +15,7 @@ public class TicketCrudService {
     public void createTicket(Ticket ticket) {
         try (Session session = HibernateUtils.getInstance().getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.persist(ticket);
+            session.merge(ticket);
             transaction.commit();
         } catch (SessionException e) {
             throw new RuntimeException();
@@ -29,9 +27,6 @@ public class TicketCrudService {
         try (Session session = HibernateUtils.getInstance().getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             ticket = session.get(Ticket.class, ticketId);
-            Hibernate.initialize(ticket.getClient());
-            Hibernate.initialize(ticket.getFromPlanetId());
-            Hibernate.initialize(ticket.getToPlanetId());
             transaction.commit();
         } catch (SessionException e) {
             throw new RuntimeException();
@@ -73,11 +68,6 @@ public class TicketCrudService {
         try (Session session = HibernateUtils.getInstance().getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             tickets = session.createQuery("from Ticket", Ticket.class).list();
-            tickets.forEach(ticket -> {
-                Hibernate.initialize(ticket.getClient());
-                Hibernate.initialize(ticket.getFromPlanetId());
-                Hibernate.initialize(ticket.getToPlanetId());
-            });
             transaction.commit();
         } catch (SessionException e) {
             throw new RuntimeException();
